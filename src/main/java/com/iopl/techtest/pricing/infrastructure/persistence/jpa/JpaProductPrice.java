@@ -1,14 +1,12 @@
-package com.iopl.techtest.pricing.infraestructure.persistence.jpa;
+package com.iopl.techtest.pricing.infrastructure.persistence.jpa;
 
 import io.hypersistence.utils.hibernate.type.money.MonetaryAmountType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.CompositeType;
 
 import javax.money.MonetaryAmount;
-import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Entity

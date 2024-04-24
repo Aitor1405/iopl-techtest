@@ -1,4 +1,4 @@
-package com.iopl.techtest.pricing.infraestructure.rest;
+package com.iopl.techtest.pricing.infrastructure.rest;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;

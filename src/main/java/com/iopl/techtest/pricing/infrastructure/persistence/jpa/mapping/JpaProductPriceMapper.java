@@ -1,12 +1,12 @@
-package com.iopl.techtest.pricing.infraestructure.persistence.jpa.mapping;
+package com.iopl.techtest.pricing.infrastructure.persistence.jpa.mapping;
 
 import com.iopl.techtest.pricing.domain.ProductPrice;
-import com.iopl.techtest.pricing.infraestructure.persistence.jpa.JpaConfig;
-import com.iopl.techtest.pricing.infraestructure.persistence.jpa.JpaProductPrice;
-import com.iopl.techtest.pricing.infraestructure.shared.mapping.BrandIdMapper;
-import com.iopl.techtest.pricing.infraestructure.shared.mapping.PriceListIdMapper;
-import com.iopl.techtest.pricing.infraestructure.shared.mapping.PricePriorityMapper;
-import com.iopl.techtest.pricing.infraestructure.shared.mapping.ProductIdMapper;
+import com.iopl.techtest.pricing.infrastructure.persistence.jpa.JpaConfig;
+import com.iopl.techtest.pricing.infrastructure.persistence.jpa.JpaProductPrice;
+import com.iopl.techtest.pricing.infrastructure.shared.mapping.BrandIdMapper;
+import com.iopl.techtest.pricing.infrastructure.shared.mapping.PriceListIdMapper;
+import com.iopl.techtest.pricing.infrastructure.shared.mapping.PricePriorityMapper;
+import com.iopl.techtest.pricing.infrastructure.shared.mapping.ProductIdMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;

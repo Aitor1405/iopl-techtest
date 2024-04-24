@@ -1,4 +1,4 @@
-package com.iopl.techtest.pricing.infraestructure.shared.mapping;
+package com.iopl.techtest.pricing.infrastructure.shared.mapping;
 
 import com.iopl.techtest.pricing.domain.BrandId;
 import org.mapstruct.Mapper;

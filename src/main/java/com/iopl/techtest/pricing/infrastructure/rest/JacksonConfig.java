@@ -1,4 +1,4 @@
-package com.iopl.techtest.pricing.infraestructure.rest;
+package com.iopl.techtest.pricing.infrastructure.rest;
 
 import com.fasterxml.jackson.databind.Module;
 import org.springframework.context.annotation.Bean;

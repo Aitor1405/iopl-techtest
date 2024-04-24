@@ -1,4 +1,4 @@
-package com.iopl.techtest.pricing.infraestructure.rest.api.find_effective_product_price;
+package com.iopl.techtest.pricing.infrastructure.rest.api.find_effective_product_price;
 
 import com.iopl.techtest.pricing.application.find_effective_product_price.FindEffectiveProductPriceUseCase;
 import com.iopl.techtest.pricing.domain.BrandId;

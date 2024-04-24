@@ -1,4 +1,4 @@
-package com.iopl.techtest.pricing.infraestructure.persistence.jpa;
+package com.iopl.techtest.pricing.infrastructure.persistence.jpa;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;

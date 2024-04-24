@@ -1,12 +1,12 @@
-package com.iopl.techtest.pricing.infraestructure.persistence;
+package com.iopl.techtest.pricing.infrastructure.persistence;
 
 import com.iopl.techtest.pricing.domain.BrandId;
 import com.iopl.techtest.pricing.domain.ProductId;
 import com.iopl.techtest.pricing.domain.ProductPrice;
 import com.iopl.techtest.pricing.domain.ProductPriceRepository;
-import com.iopl.techtest.pricing.infraestructure.persistence.jpa.JpaConfig;
-import com.iopl.techtest.pricing.infraestructure.persistence.jpa.JpaProductPriceRepository;
-import com.iopl.techtest.pricing.infraestructure.persistence.jpa.mapping.JpaProductPriceMapper;
+import com.iopl.techtest.pricing.infrastructure.persistence.jpa.JpaConfig;
+import com.iopl.techtest.pricing.infrastructure.persistence.jpa.JpaProductPriceRepository;
+import com.iopl.techtest.pricing.infrastructure.persistence.jpa.mapping.JpaProductPriceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
