@@ -4,24 +4,28 @@ import com.iopl.techtest.pricing.application.find_effective_product_price.FindEf
 import com.iopl.techtest.pricing.domain.BrandId;
 import com.iopl.techtest.pricing.domain.ProductId;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/prices")
+@RequestMapping("/api")
 public class FindEffectiveProductPriceController {
 
     private final FindEffectiveProductPriceResponseMapper findEffectiveProductPriceResponseMapper;
     private final FindEffectiveProductPriceUseCase findEffectiveProductPriceUseCase;
 
-    @GetMapping
-    public FindEffectiveProductPriceResponse findEffectivePriceResponse(
+    @GetMapping("/prices/search")
+    public FindEffectiveProductPriceResponse findEffectivePriceSearch(
             @RequestParam long brandId, @RequestParam long productId, @RequestParam Instant effectiveInstant) {
+        var productPrice = findEffectiveProductPriceUseCase.findEffectiveProductPriceBy(new BrandId(brandId), new ProductId(productId), effectiveInstant);
+        return findEffectiveProductPriceResponseMapper.map(productPrice);
+    }
+
+    @GetMapping("/brands/{brandId}/products/{productId}")
+    public FindEffectiveProductPriceResponse findEffectivePrice(
+            @PathVariable long brandId, @PathVariable long productId, @RequestParam Instant effectiveInstant) {
         var productPrice = findEffectiveProductPriceUseCase.findEffectiveProductPriceBy(new BrandId(brandId), new ProductId(productId), effectiveInstant);
         return findEffectiveProductPriceResponseMapper.map(productPrice);
     }

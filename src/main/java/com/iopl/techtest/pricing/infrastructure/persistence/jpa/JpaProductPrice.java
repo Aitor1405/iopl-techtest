@@ -1,12 +1,13 @@
 package com.iopl.techtest.pricing.infrastructure.persistence.jpa;
 
-import io.hypersistence.utils.hibernate.type.money.MonetaryAmountType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import lombok.*;
-import org.hibernate.annotations.CompositeType;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.money.MonetaryAmount;
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 @Entity
@@ -33,15 +34,8 @@ public class JpaProductPrice {
     @Column(name = "PRIORITY")
     @Min(0)
     private Integer priority;
-
-    @AttributeOverride(
-            name = "amount",
-            column = @Column(name = "PRICE")
-    )
-    @AttributeOverride(
-            name = "currency",
-            column = @Column(name = "CURR", length = 3)
-    )
-    @CompositeType(MonetaryAmountType.class)
-    private MonetaryAmount price;
+    @Column(name = "PRICE")
+    private BigDecimal amount;
+    @Column(name = "CURR", length = 3)
+    private String currency;
 }
