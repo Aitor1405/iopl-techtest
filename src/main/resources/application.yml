@@ -27,3 +27,7 @@ logging:
           descriptor :
             sql :
               BasicBinder : TRACE
+
+persistence:
+  jpa:
+    zoneOffset: Z
