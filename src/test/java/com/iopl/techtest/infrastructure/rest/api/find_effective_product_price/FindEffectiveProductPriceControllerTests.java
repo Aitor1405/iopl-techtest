@@ -46,7 +46,7 @@ public class FindEffectiveProductPriceControllerTests {
                 LocalDateTime.of(2020, 12, 31, 23, 59, 59).toInstant(jpaProperties.getZoneOffset()),
                 new Price(new BigDecimal("35.50"), "EUR")
         );
-        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "?effectiveInstant=" + effectiveInstant;
+        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "/prices?effectiveInstant=" + effectiveInstant;
         var response = testRestTemplate.getForObject(url, FindEffectiveProductPriceResponse.class);
         Assertions.assertEquals(expectedResponse, response);
     }
@@ -62,7 +62,7 @@ public class FindEffectiveProductPriceControllerTests {
                 LocalDateTime.of(2020, 12, 31, 23, 59, 59).toInstant(jpaProperties.getZoneOffset()),
                 new Price(new BigDecimal("35.50"), "EUR")
         );
-        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "?effectiveInstant=" + effectiveInstant;
+        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "/prices?effectiveInstant=" + effectiveInstant;
         var response = testRestTemplate.getForObject(url, FindEffectiveProductPriceResponse.class);
         Assertions.assertEquals(expectedResponse, response);
     }
@@ -78,7 +78,7 @@ public class FindEffectiveProductPriceControllerTests {
                 LocalDateTime.of(2020, 6, 14, 18, 30, 0).toInstant(jpaProperties.getZoneOffset()),
                 new Price(new BigDecimal("25.45"), "EUR")
         );
-        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "?effectiveInstant=" + effectiveInstant;
+        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "/prices?effectiveInstant=" + effectiveInstant;
         var response = testRestTemplate.getForObject(url, FindEffectiveProductPriceResponse.class);
         Assertions.assertEquals(expectedResponse, response);
     }
@@ -94,7 +94,7 @@ public class FindEffectiveProductPriceControllerTests {
                 LocalDateTime.of(2020, 6, 15, 11, 0, 0).toInstant(jpaProperties.getZoneOffset()),
                 new Price(new BigDecimal("30.50"), "EUR")
         );
-        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "?effectiveInstant=" + effectiveInstant;
+        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "/prices?effectiveInstant=" + effectiveInstant;
         var response = testRestTemplate.getForObject(url, FindEffectiveProductPriceResponse.class);
         Assertions.assertEquals(expectedResponse, response);
     }
@@ -110,7 +110,7 @@ public class FindEffectiveProductPriceControllerTests {
                 LocalDateTime.of(2020, 12, 31, 23, 59, 59).toInstant(jpaProperties.getZoneOffset()),
                 new Price(new BigDecimal("38.95"), "EUR")
         );
-        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "?effectiveInstant=" + effectiveInstant;
+        var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "/prices?effectiveInstant=" + effectiveInstant;
         var response = testRestTemplate.getForObject(url, FindEffectiveProductPriceResponse.class);
         Assertions.assertEquals(expectedResponse, response);
     }

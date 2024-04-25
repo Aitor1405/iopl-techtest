@@ -23,12 +23,11 @@ public class FindEffectiveProductPriceController {
         return findEffectiveProductPriceResponseMapper.map(productPrice);
     }
 
-    @GetMapping("/brands/{brandId}/products/{productId}")
+    @GetMapping("/brands/{brandId}/products/{productId}/prices")
     public FindEffectiveProductPriceResponse findEffectivePrice(
             @PathVariable long brandId, @PathVariable long productId, @RequestParam Instant effectiveInstant) {
         var productPrice = findEffectiveProductPriceUseCase.findEffectiveProductPriceBy(new BrandId(brandId), new ProductId(productId), effectiveInstant);
         return findEffectiveProductPriceResponseMapper.map(productPrice);
     }
 
-    // TODO: set @ControllerAdvice for use case errors
 }
