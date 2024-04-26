@@ -2,7 +2,9 @@ package com.iopl.techtest.infrastructure.rest.api.find_effective_product_price;
 
 import com.iopl.techtest.pricing.infrastructure.persistence.jpa.JpaProductPriceRepository;
 import com.iopl.techtest.pricing.infrastructure.persistence.jpa.JpaProperties;
+import com.iopl.techtest.pricing.infrastructure.rest.api.find_effective_product_price.EffectivePriceNotFoundError;
 import com.iopl.techtest.pricing.infrastructure.rest.api.find_effective_product_price.FindEffectiveProductPriceResponse;
+import com.iopl.techtest.pricing.infrastructure.rest.error.BadRequestApiError;
 import com.iopl.techtest.pricing.infrastructure.shared.model.Price;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
@@ -113,6 +116,26 @@ public class FindEffectiveProductPriceControllerTests {
         var url = "http://localhost:" + port + "/api/brands/" + expectedResponse.brandId() + "/products/" + expectedResponse.productId() + "/prices?effectiveInstant=" + effectiveInstant;
         var response = testRestTemplate.getForObject(url, FindEffectiveProductPriceResponse.class);
         Assertions.assertEquals(expectedResponse, response);
+    }
+
+    @Test
+    @Sql("test-data.sql")
+    public void effectiveProductPriceNotFound() {
+        var datetime = LocalDateTime.of(2024, 6, 16, 21, 0, 0);
+        var effectiveInstant = datetime.toInstant(jpaProperties.getZoneOffset());
+        var error = new EffectivePriceNotFoundError(1, 35455, effectiveInstant);
+        var url = "http://localhost:" + port + "/api/brands/" + error.getBrandId() + "/products/" + error.getProductId() + "/prices?effectiveInstant=" + effectiveInstant;
+        var responseEntity = testRestTemplate.getForEntity(url, EffectivePriceNotFoundError.class);
+        Assertions.assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        Assertions.assertEquals(error, responseEntity.getBody());
+    }
+
+    @Test
+    public void effectiveProductPriceBadRequest() {
+        var url = "http://localhost:" + port + "/api/brands/1/products/2/prices?effectiveInstant=INVALID";
+        var responseEntity = testRestTemplate.getForEntity(url, BadRequestApiError.class);
+        Assertions.assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+        Assertions.assertEquals(new BadRequestApiError(), responseEntity.getBody());
     }
 
 }

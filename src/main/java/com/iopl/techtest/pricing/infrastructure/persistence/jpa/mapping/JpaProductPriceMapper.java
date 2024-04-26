@@ -16,6 +16,7 @@ public abstract class JpaProductPriceMapper {
     @Autowired
     protected PriceMapper priceMapper;
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "startAt", expression = "java(from.startAt().atOffset(jpaProperties.getZoneOffset()))")
     @Mapping(target = "endAt", expression = "java(from.endAt().atOffset(jpaProperties.getZoneOffset()))")
     @Mapping(target = "amount", expression = "java(from.price().amount())")

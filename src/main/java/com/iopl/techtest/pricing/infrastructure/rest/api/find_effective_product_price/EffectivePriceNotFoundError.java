@@ -1,11 +1,13 @@
 package com.iopl.techtest.pricing.infrastructure.rest.api.find_effective_product_price;
 
 import com.iopl.techtest.pricing.infrastructure.rest.error.ApiError;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.time.Instant;
 
 @Getter
+@EqualsAndHashCode(callSuper = true)
 public class EffectivePriceNotFoundError extends ApiError {
 
     private final long brandId;
