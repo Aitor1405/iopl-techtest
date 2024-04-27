@@ -1,6 +1,7 @@
 package com.iopl.techtest.application;
 
 import com.iopl.techtest.pricing.application.find_effective_product_price.FindEffectiveProductPriceUseCase;
+import com.iopl.techtest.pricing.application.find_effective_product_price.FindEffectiveProductPriceUseCaseImpl;
 import com.iopl.techtest.pricing.domain.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class FindEffectiveProductPriceUseCaseTests {
+public class FindEffectiveProductPriceUseCaseImplTests {
 
     private static final ZoneOffset TEST_ZONE_OFFSET = ZoneOffset.UTC;
 
@@ -36,7 +37,7 @@ public class FindEffectiveProductPriceUseCaseTests {
         Mockito.when(productPriceRepository.findFirstByBrandIdAndProductIdAndInstantBetweenStartAtAndEndAtOrderedByPriorityDesc(brandId, productId, effectiveInstant))
                 .thenReturn(Optional.of(expectedProductPrice));
 
-        var findEffectiveProductPriceUseCase = new FindEffectiveProductPriceUseCase(productPriceRepository);
+        FindEffectiveProductPriceUseCase findEffectiveProductPriceUseCase = new FindEffectiveProductPriceUseCaseImpl(productPriceRepository);
 
         var effectiveProductPrice = findEffectiveProductPriceUseCase.findEffectiveProductPriceBy(brandId, productId, effectiveInstant);
         Assertions.assertEquals(expectedProductPrice, effectiveProductPrice);
@@ -54,9 +55,9 @@ public class FindEffectiveProductPriceUseCaseTests {
         Mockito.when(productPriceRepository.findFirstByBrandIdAndProductIdAndInstantBetweenStartAtAndEndAtOrderedByPriorityDesc(brandId, productId, effectiveInstant))
                 .thenReturn(Optional.empty());
 
-        var findEffectiveProductPriceUseCase = new FindEffectiveProductPriceUseCase(productPriceRepository);
+        FindEffectiveProductPriceUseCase findEffectiveProductPriceUseCase = new FindEffectiveProductPriceUseCaseImpl(productPriceRepository);
 
-        var effectiveProductPriceNotFoundEx = assertThrows(FindEffectiveProductPriceUseCase.FindEffectivePriceUseCaseException.NotFound.class,
+        var effectiveProductPriceNotFoundEx = assertThrows(FindEffectiveProductPriceUseCaseImpl.FindEffectivePriceUseCaseException.NotFound.class,
                 () -> findEffectiveProductPriceUseCase.findEffectiveProductPriceBy(brandId, productId, effectiveInstant));
         assertEquals("No effective product price found.", effectiveProductPriceNotFoundEx.getMessage());
         assertEquals(brandId, effectiveProductPriceNotFoundEx.getBrandId());

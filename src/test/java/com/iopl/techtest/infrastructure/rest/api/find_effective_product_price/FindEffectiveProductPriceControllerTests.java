@@ -1,6 +1,7 @@
 package com.iopl.techtest.infrastructure.rest.api.find_effective_product_price;
 
 import com.iopl.techtest.pricing.application.find_effective_product_price.FindEffectiveProductPriceUseCase;
+import com.iopl.techtest.pricing.application.find_effective_product_price.FindEffectiveProductPriceUseCaseImpl;
 import com.iopl.techtest.pricing.domain.*;
 import com.iopl.techtest.pricing.infrastructure.rest.api.find_effective_product_price.EffectivePriceNotFoundError;
 import com.iopl.techtest.pricing.infrastructure.rest.api.find_effective_product_price.FindEffectiveProductPriceResponse;
@@ -35,7 +36,6 @@ public class FindEffectiveProductPriceControllerTests {
 
     @MockBean
     private FindEffectiveProductPriceUseCase findEffectiveProductPriceUseCase;
-
 
     @Test
     public void effectiveProductPricePathVariables() {
@@ -93,7 +93,7 @@ public class FindEffectiveProductPriceControllerTests {
         var productId = new ProductId(35455);
         var datetime = LocalDateTime.of(2024, 6, 16, 21, 0, 0);
         var effectiveInstant = datetime.toInstant(TEST_ZONE_OFFSET);
-        var ex = new FindEffectiveProductPriceUseCase.FindEffectivePriceUseCaseException.NotFound("No effective product price found.", brandId, productId, effectiveInstant);
+        var ex = new FindEffectiveProductPriceUseCaseImpl.FindEffectivePriceUseCaseException.NotFound("No effective product price found.", brandId, productId, effectiveInstant);
         var expectedError = new EffectivePriceNotFoundError(brandId.value(), productId.value(), effectiveInstant);
         Mockito.when(findEffectiveProductPriceUseCase.findEffectiveProductPriceBy(brandId, productId, effectiveInstant)).thenThrow(ex);
         var url = "http://localhost:" + port + "/api/brands/" + expectedError.getBrandId() + "/products/" + expectedError.getProductId() + "/prices?effectiveInstant=" + effectiveInstant;
