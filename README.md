@@ -1,4 +1,4 @@
-# IOPL Technical Test
+# IOPL Technical Test (acortes@izertis.com)
 
 This repository is a technical test for the IOPL project at Izertis.
 
